@@ -19,7 +19,7 @@
             <if test="bookCounts != null">bookCounts=#{bookCounts},</if>
             <if test="detail != null">detail=#{detail},</if>
         </set>
-        where bookID = #{bookID};
+        where bookId = #{bookId};
     </update>
     <select id="findBookById" resultType="books">
         select *
