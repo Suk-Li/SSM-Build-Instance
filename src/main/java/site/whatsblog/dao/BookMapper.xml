@@ -30,4 +30,13 @@
         select *
         from books;
     </select>
+    <select id="findBookByName" resultType="books">
+        select *
+        from books
+        <where>
+            <if test="bookName != null">
+                bookName like '%${bookName}%'
+            </if>
+        </where>
+    </select>
 </mapper>

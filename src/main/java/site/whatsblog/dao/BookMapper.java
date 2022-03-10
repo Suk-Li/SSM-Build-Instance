@@ -28,4 +28,6 @@ public interface BookMapper {
     Books findBookById(@Param("bookID") int bookID);
     // 查询所有书
     List<Books> findAllBooks();
+
+    List<Books> findBookByName(String bookName);
 }

@@ -29,6 +29,12 @@
             <div class="col-md-4 column">
                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/toAddBook">新增书籍</a>
             </div>
+            <div class="col-md-8 column">
+                <form class="form-inline" action="${pageContext.request.contextPath}/book/queryBook" method="post">
+                    <input class="form-control" name="bookName" type="text" placeholder="请输入要查询的书籍名称……">
+                    <input type="submit" value="查询" class="btn btn-primary">
+                </form>
+            </div>
         </div>
     </div>
 
@@ -46,13 +52,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:if test="${message!=''}">
+                    <tr>
+                        <td colspan="4"><span style="color: red">${message}</span></td>
+                    </tr>
+                </c:if>
                 <c:forEach var="book" items="${list}">
                     <tr>
                         <td>${book.bookId}</td>
                         <td>${book.bookName}</td>
                         <td>${book.bookCounts}</td>
                         <td>${book.detail}</td>
-                        <td><a href="${pageContext.request.contextPath}/book/toUpdateBook/${book.bookId}">修改</a>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/book/toUpdateBook/${book.bookId}">修改</a>
                             |
                             <a href="${pageContext.request.contextPath}/book/deleteBook/${book.bookId}">删除</a>
                         </td>

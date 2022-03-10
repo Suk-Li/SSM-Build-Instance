@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import site.whatsblog.pojo.Books;
 import site.whatsblog.service.BookService;
 
+import java.util.List;
+
 /**
  * <strong>
  * description :
@@ -60,6 +62,18 @@ public class BookController {
     public String updateBook(Books books) {
         bookService.updateBook(books);
         return "redirect:/book/allBook";
+    }
+
+    @RequestMapping("/queryBook")
+    public String queryBook(String bookName,Model model){
+        List<Books> books = bookService.findBookByName(bookName);
+        if (bookName.isEmpty()||books.isEmpty()){
+            model.addAttribute("message", "未查到！");
+        }else{
+            model.addAttribute("message", "");
+            model.addAttribute("list", books);
+        }
+        return "allBook";
     }
 
 }
